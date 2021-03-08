@@ -1,0 +1,10 @@
+---
+
+- name: __restart_mysql
+  service:
+    name: mysql 
+    state: restarted
+    enabled: yes
+# handlers file for sqlserver
+
+...

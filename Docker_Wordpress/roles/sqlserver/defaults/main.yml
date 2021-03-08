@@ -1,0 +1,28 @@
+---
+
+package_srv:
+  - apt-transport-https
+  - software-properties-common
+  - vim
+  - zsh
+  - python3
+  - python3-pip
+  - python3-pymysql
+  - mariadb-server
+
+netwk:
+  - localhost
+  - '127.0.0.1'
+  - '::1'
+  - '%'
+
+db_name:
+  - wordpress
+  - db1
+  - db2
+
+mysql_db: wordpress
+mysql_root_password: poiuytre
+mysql_user: thx64
+mysql_password : poiuytre 
+# defaults file for sqlserver

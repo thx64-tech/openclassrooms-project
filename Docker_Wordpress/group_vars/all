@@ -1,0 +1,9 @@
+---
+httpd_port: 80
+
+mysql_db: wordpress
+mysql_root_password: poiuytre
+mysql_user: thx64
+mysql_password: poiuytre
+mysql_host: 172.17.0.3
+mysql_port: 3306

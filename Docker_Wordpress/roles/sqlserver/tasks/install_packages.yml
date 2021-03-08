@@ -1,0 +1,14 @@
+---
+
+- name: "[sql server] - update cache"
+  become: yes
+  become_method: sudo
+  apt:
+    name: "{{ package_srv  }}"
+    update_cache: yes
+    force_apt_get: yes
+    state: latest
+
+
+
+...

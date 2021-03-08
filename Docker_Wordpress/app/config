@@ -1,0 +1,10 @@
+Host 172.16.186.*
+  User thx64
+  Port 22
+  IdentityFile /home/thx64/.ssh/id_rsa
+  UserKnownHostsFile /dev/null
+  LogLevel INFO
+  Compression yes
+  ForwardAgent yes
+  ForwardX11 yes
+

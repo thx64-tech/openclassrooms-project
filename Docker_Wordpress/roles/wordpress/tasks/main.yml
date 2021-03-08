@@ -1,0 +1,11 @@
+---
+
+- name: "[WORDPRESS] - install packages"
+  include: install_packages.yml
+
+- name: "[WORDPRESS] - install apache"
+  include: install_apache.yml
+
+- name: "[WORDPRESS] - install wordpress"
+  include: install_wordpress.yml
+...

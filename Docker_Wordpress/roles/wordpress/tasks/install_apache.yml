@@ -1,0 +1,47 @@
+---
+
+- name: "[APACHE] - verifie si apache est demarre"
+  service:
+    name: apache2
+    enabled: true
+    state: started
+  become: yes
+
+#- name: "[APACHE] - enabled mod-rewrite"
+#  apache2_module:
+#    name: rewrite
+#    state: present
+#  notify:
+#    - restart apache2
+
+#- name: "[APACHE] - listen on port 8080"
+#  lineinfile: dest=/etc/apache2/ports.conf regexp="^Listen 80" line="Listen 8080" state=present
+#  notify:
+#    - restart apache2
+
+#- name: "[APACHE] - virtualhost on port 8080"
+#  lineinfile: dest=/etc/apache2/sites-available/000-default.conf regexp="^<VirtualHost \*:80>" line="<VirtualHost *:8080>" state=present
+#  notify:
+#    - restart apache2
+
+#- name: "[APACHE] - Document Root"
+#  replace:
+#    path: /etc/apache2/sites-available/000-default.conf
+#    regexp: '(\s+)DocumentRoot /var/www/html/wordpress$'
+#    replace: '(\s+)DocumentRoot /var/www/html/wordpress$'
+#  become: yes
+#  become_user: root
+#  notify:
+#    - restart apache2
+
+- name: "[APACHE] - delete html directory"
+  file:
+    path: "/var/www/html"
+    state: absent
+
+- name: "[APACHE] - delete html directory"
+  file:
+    src: "/srv/html"
+    dest: "/var/www/html"
+    state: link
+...

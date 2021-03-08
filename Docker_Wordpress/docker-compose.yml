@@ -1,0 +1,55 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: mariadb
+    image: mariadb:latest
+    volumes:
+      - wp_db:/var/lib/mysql
+    restart:  always
+    environment:
+      MYSQL_ROOT_PASSWORD: poiuytre
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: thx64
+      MYSQL_PASSWORD: poiuytre
+    networks:
+    - wp
+
+  wordpress:
+    depends_on:
+      - db
+    container_name: wordpress
+    image: wordpress:latest
+    volumes:
+      - wp_statics:/var/www/html/
+    ports:
+      - 8000:80
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: thx64
+      WORDPRESS_DB_PASSWORD: poiuytre
+    networks:
+    - wp
+    - webgateway
+
+networks:
+  wp:
+  webgateway:
+    driver: bridge
+
+volumes:
+  wp_db:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/srv/wordpress/db'
+  wp_statics:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/srv/wordpress/statics'
+            
+

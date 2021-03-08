@@ -1,0 +1,29 @@
+    ---
+    # This playbook sets up whole stack.
+- hosts: all
+
+  roles:
+  - common
+
+# Configure and deploy database servers.
+- hosts: dbserver
+  remote_user: root
+  become: yes
+  roles:
+  - sqlserver
+
+# Configure and deplay wordpress servers.
+- hosts: webserver
+  roles:
+  - wordpress
+
+# Configure and deploy the load balancer(s).
+- hosts: lbservers
+  roles:
+  - haproxy
+
+# Configure and deploy the Nagios monitoring node(s).
+- hosts: monitoring
+  roles:
+  - base-apache
+  - nagios

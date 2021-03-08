@@ -1,0 +1,36 @@
+---
+
+# package for server
+package_srv:
+  - apt-transport-https
+  - vim
+  - git
+  - zsh
+  - python3
+  - openssl
+  - lsb-release
+  - ca-certificates
+  - software-properties-common
+
+# package for lamp
+package_name:
+  - apache2
+  - php8.0
+  - libapache2-mod-php8.0
+  - wget
+  - php8.0-mysql
+  - php8.0-curl
+  - php8.0-gd
+  - php8.0-intl
+  - php8.0-sqlite3
+  - php8.0-gmp
+  - php8.0-mbstring
+  - php8.0-xml
+  - php8.0-zip
+
+#wordpress
+wordpress_source: "https://wordpress.org/latest.tar.gz"
+
+
+# defaults file for wordpress
+...

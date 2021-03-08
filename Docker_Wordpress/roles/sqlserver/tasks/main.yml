@@ -1,0 +1,68 @@
+---
+
+- name: "[SQL server] - install packages"
+  include: install_packages.yml
+
+- name: "[sql server] - start mariadb"
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+
+# create root .my.cnf config file
+- name: Add root .my.cnf
+  ansible.builtin.template:
+    src: my.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: "[sql server] - change my.cnf"
+  lineinfile:
+    dest: "/etc/mysql/my.cnf"
+    line: "{{ item }}"
+  with_items:
+    - "[mysqld]"
+    - "bind-address = 0.0.0.0"
+    - "# skip-networking"
+  notify: __restart_mysql
+
+- name: "[sql server] - Create new databases"
+  mysql_db:
+    name: "{{ item }}"
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  loop: "{{ db_name }}"
+
+- name: "[sql server] - Create user"
+  mysql_user:
+    name: "{{ mysql_user }}"
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    password: "{{ mysql_password }}"
+    host: "{{ item }}"
+    priv:
+      "*.*:ALL"
+  loop: "{{ netwk }}"
+#  loop: "{{ db_name }}"
+#- name: "[sql server] - create database"
+#  command: mysql -uroot -p{{ mysql_root_password }} -e "CREATE DATABASE {{ mysql_db}};"
+#  changed_when: false
+
+#- name: "[sql server] - create user"
+#  command: mysql -uroot -p{{ mysql_root_password }} -e "CREATE USER /'{{ mysql_user }}/'@/'{{ items }}/' IDENTIFIED BY /'{{mysql_password }}/';"
+#  with_items:
+#    - netwk
+#  changed_when: false
+
+#- name: "[sql server] - add privilege"
+#  command: mysql -uroot -p{{ mysql_root_password }} -e "GRANT ALL PRIVILEGES ON *.* TO '{{ mysql_user }}'@'{{ items }}';"
+#  with_items:
+#    - netwk
+#  changed_when: false
+
+#- name: "[sql server] - maj des privilege"
+#  command: mysql -uroot -p{{ mysql_root_password }} -e "FLUSH PRIVILEGES;"
+# tasks file for sqlserver
+...

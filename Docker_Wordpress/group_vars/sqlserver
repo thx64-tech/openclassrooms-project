@@ -1,0 +1,12 @@
+---
+mysqlservice: mysqld
+mysql_port: 3306
+dbuser: root
+dbname: "{{ item }}"
+upassword: "{{ mysql_root_password}}"
+with_items: "{{ db_name }}"
+
+db_name:
+  - wordpress
+  - db1
+  - db2

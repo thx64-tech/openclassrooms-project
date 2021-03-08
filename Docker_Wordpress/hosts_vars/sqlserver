@@ -1,0 +1,13 @@
+---
+# Variables listed here are applicable to "sqlserver" roles
+
+sqlserver:
+  user: root
+  old_password: root
+  new_password: poiuytre
+  hosts:
+    - "{{ ansible_hostname }}"
+    - "127.0.0.1"
+    - "::1"
+    - "localhost"
+  privileges: "*.*:ALL,GRANT"

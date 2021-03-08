@@ -1,0 +1,22 @@
+---
+
+- name: "[SRV] - update cache"
+  apt:
+    name: '{{ package_srv }}'
+    update_cache: yes
+    state: latest
+  become: yes
+
+- name: "[SRV] - install pip3"
+  apt:
+    name: python3-pip
+    state: present
+
+- name: "[SRV] - install Apache/PHP"
+  apt:
+    name: '{{ package_name }}'
+    state: present
+  become: yes
+
+
+...
