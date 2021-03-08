@@ -1,0 +1,40 @@
+---
+
+- name: sqlserver
+  hosts: dbserver
+  become: yes
+  roles:
+    - sqlserver
+- name: lbdserver
+  hosts: lbserver
+  become: yes
+  roles:
+    - lbdserver
+- name: wordpress
+  hosts: webserver
+  become: yes
+  roles:
+    - wordpress
+
+#  vars:
+#    myapp_conf:
+#      - "buffer = True"
+#      - "memory = 90mb"
+#      - "cache= 1G"
+#  tasks:
+#  - name: creer un dossier
+#    file:
+#      path: /tmp/myapp/
+#      state: directory
+#      mode: 0755
+#      owner: thx64
+
+#  - name: creer un template
+#    template:
+#      src: myappconf.cfg.j2
+#      dest: /tmp/myapp/myappconf.cfg
+#      mode: 0755
+#      owner: thx64
+
+
+...
