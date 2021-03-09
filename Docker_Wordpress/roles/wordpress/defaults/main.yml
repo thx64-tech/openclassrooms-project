@@ -15,6 +15,7 @@ package_srv:
 # package for lamp
 package_name:
   - apache2
+  - mariadb-client
   - php8.0
   - libapache2-mod-php8.0
   - wget

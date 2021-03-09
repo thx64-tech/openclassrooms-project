@@ -45,6 +45,8 @@
     priv:
       "*.*:ALL"
   loop: "{{ netwk }}"
+
+  
 #  loop: "{{ db_name }}"
 #- name: "[sql server] - create database"
 #  command: mysql -uroot -p{{ mysql_root_password }} -e "CREATE DATABASE {{ mysql_db}};"

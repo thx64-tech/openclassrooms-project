@@ -5,9 +5,6 @@ ansible_python_interpreter: auto_legacy_silent
 mysql_conf_dir:
   "Ubuntu": /etc/mysql/conf.d
 
-mysql_db: wordpress
-mysql_root_password: poiuytre
-mysql_user: thx64
-mysql_password : poiuytre  
+
 
 # vars file for sqlserver

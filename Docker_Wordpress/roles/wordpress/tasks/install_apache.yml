@@ -7,6 +7,17 @@
     state: started
   become: yes
 
+- name: "[APACHE] - delete html directory"
+  file:
+    path: "/var/www/html"
+    state: absent
+
+- name: "[APACHE] - delete html directory"
+  file:
+    src: "/srv/html"
+    dest: "/var/www/html"
+    state: link
+
 #- name: "[APACHE] - enabled mod-rewrite"
 #  apache2_module:
 #    name: rewrite
@@ -33,15 +44,4 @@
 #  become_user: root
 #  notify:
 #    - restart apache2
-
-- name: "[APACHE] - delete html directory"
-  file:
-    path: "/var/www/html"
-    state: absent
-
-- name: "[APACHE] - delete html directory"
-  file:
-    src: "/srv/html"
-    dest: "/var/www/html"
-    state: link
 ...
